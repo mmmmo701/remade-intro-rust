@@ -2,3 +2,6 @@
 title = "A Remade Introduction to Rust"
 authors = ["Mike Mo"]
 language = "en"
+
+[output.html]
+mathjax-support = true
