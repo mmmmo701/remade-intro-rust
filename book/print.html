@@ -1,0 +1,523 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>A Remade Introduction to Rust</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-f6a1c940.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-5476606a.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">A Remade Introduction to Rust</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
+<p>Welcome to <em>A Remade Introduction to Rust</em>.</p>
+<h2 id="why-remaking"><a class="header" href="#why-remaking">Why Remaking?</a></h2>
+<p>I am writing this book because I want to change how people learn this language.</p>
+<p>Right now, I am a student at Carnegie Mellon University. I am taking a course called 98-008 (StuCo: Intro to Rust Lang). “StuCo” is a special type of class where students like me are the primary teachers. Our main textbook is the <a href="https://doc.rust-lang.org/stable/book/}">official Rust documentation</a>. Most people just call it “The Book.”</p>
+<p>“The Book” is very famous, but I found it hard to use. This was true even though I already knew how to code in C and C++. “The Book” tries to show you every single feature of Rust at the same time. It is like trying to learn how to drive by looking at a giant map of every road in the country. When I read it, I felt “dizzy.” I would read a chapter, but I could not remember what I learned five minutes later. This made me have to look back at the documentation every time I’m trying to write some code. Instead of an introductory tutorial to Rust, “The Book” functions more like an encyclopedia of all the Rust features. Just like it is almost impossible to learn Spanish from a dictionary, the documentation is not optimal for learning.</p>
+<p>Since it is 2026, a more valuable question to think about is: why do we even need to learn a new programming language if we already have ChatGPT? I mean, you can use AI to write an entire software in Rust even without any knowledge in Rust. Before Large Language Models (LLMs) were invented, a large part of learning programming involves memorizing the syntax: you have to memorize how to write a <code>for</code> loop, how to use an array, etc., in order to write code in that language, or else you just have to constantly check the documentation. Now it’s different: if you forget how to pass a vector as a parameter to a function, you can just Google it, and a perfect response crafted by AI, with the answer highlighted, is at the top. The cost of looking something up become much less, so the value of memorization consequently become less.</p>
+<p>So what’s valuable? If you have learned a programming language, think about this: why is the syntax designed like this? For example. why do variables have types? The design choices behind those syntaxes is what’s valuable. It is a piece of artwork that describes how the computer is operated, that enalbes people to operate it safely and efficiently, and that serves as a bridge between human logic and machine instructions.</p>
+<h2 id="about-this-book"><a class="header" href="#about-this-book">About this Book</a></h2>
+<p>With the landscape of the new era, I am remaking this introduction to truly bring people into Rust. I will not just list features. Instead, I will focus on the most important parts of Rust: we will look at real examples and stay with them until they make sense, and we will dive into the concepts and see what makes Rust a unique language.</p>
+<p>Hands-on experience is the most important part of learning a programming language, so this book aims to make you write code while learning. Instead of spending a long time on theory, you will write your first Rust program after a chapter of “why Rust” and a chapter of setting up.</p>
+<p>At the end of each chapter, there is a lab. While there are projects like the Guessing Game or the Command Line Program in the official documentation, the amount of projects in the documentation is far less than enough. What makes learning fun is the sense of achievement of successfully doing something, so instead of the common “debug” or “fill-in-the-blank” style, you will actually have the chance to make something that you would be proud of.</p>
+<p>Most people do not learn Rust as their first language. For example, at CMU, most computer science students learn C in an introductory programming class called 15-122. Because of this, my book will sometimes use examples in C for analogies. Comparing Rust to C will help you see why Rust is special. Therefore, this book is primarily intended for anyone with prior programming experience in C equivalent to one semester of introductory programming course. If you know a little bit of C, this book will be easier to read. However, I will try my best to make sure people with different programming backgrounds will understand it.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="why-rust"><a class="header" href="#why-rust">Why Rust</a></h1>
+<p>Before you install a compiler or write a single line of code, it is worth asking: Why bother? You probably already know C or another programming language. You can already make a computer do exactly what you want. Why spend weeks learning a language that is famous for being difficult?</p>
+<p>The answer isn’t about what Rust can do. It’s about what Rust <strong>won’t</strong> let you do.</p>
+<h2 id="the-safety-net"><a class="header" href="#the-safety-net">The Safety Net</a></h2>
+<p>If you have taken an introductory programming course in C (like 15-122), you know the pain of the <strong>Segmentation Fault</strong>. You spend three hours writing a linked list, only to have the program crash because of a single null pointer or a buffer overflow. In C, the compiler is like a friend who watches you walk toward a cliff and says nothing until you’ve already fallen off.</p>
+<p>Rust is different. Its compiler is like a strict but brilliant mentor. It checks your memory usage while you are writing the code, not while the program is running. If you try to access a null pointer or use memory you’ve already freed, Rust simply refuses to compile. It forces you to fix the bug before the program even starts. In Rust, if it compiles, it usually works.</p>
+<h2 id="the-speed-of-c-the-brains-of-python"><a class="header" href="#the-speed-of-c-the-brains-of-python">The Speed of C, the Brains of Python</a></h2>
+<p>Usually, you have to choose between two types of languages:</p>
+<ol>
+<li><strong>Fast and Dangerous</strong>: Languages like C or C++ that are incredibly fast but easy to break.</li>
+<li><strong>Slow and Safe</strong>: Languages like Python or Java that are easy to use because they have a “Garbage Collector” (a background program that cleans up memory), but this makes them slower and heavier.</li>
+</ol>
+<p>Rust is the “Holy Grail.” It is as fast as C because it has no garbage collector and no runtime overhead. However, it is as safe as a high-level language because of its powerful type system. It gives you the raw power of a heavy-duty chainsaw, but with a safety sensor so advanced that it’s physically impossible to cut anything but the wood.</p>
+<h2 id="a-modern-tool-for-a-modern-world"><a class="header" href="#a-modern-tool-for-a-modern-world">A Modern Tool for a Modern World</a></h2>
+<p>C was created in the 1970s. While it is beautiful, it was built for a world that didn’t have the internet or massive security threats. Rust is a modern language. It comes with a built-in “all-in-one” tool called <strong>Cargo</strong>.</p>
+<p>In C, adding a library is a nightmare of header files and linker errors. In Rust, you just add one line to a file, and Cargo handles everything—downloading the library, compiling it, and making sure it works with your project. It makes the “boring” parts of programming disappear so you can focus on building cool things.</p>
+<p>Learning Rust isn’t just about learning a new syntax; it’s about learning a better way to think about how computers work.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Now that you know why to learn Rust, let’s get it onto your computer! Rust is installed using a tool called <strong>rustup</strong>, which manages everything for you. Find your operating system below and follow the steps.</p>
+<h2 id="linux-and-macos"><a class="header" href="#linux-and-macos">Linux and macOS</a></h2>
+<p>Open your terminal and paste the following command from the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">official website</a>:</p>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 [https://sh.rustup.rs](https://sh.rustup.rs) -sSf | sh
+</code></pre>
+<p>During the process, you might see some text on the screen asking for permission. Just follow the instructions—usually, you just need to press 1 and then Enter to choose the “default” installation.</p>
+<p>If the install is successful, you will see this message:</p>
+<p>“Rust is installed now. Great!”</p>
+<blockquote>
+<p>Note for macOS/Linux users: Rust needs a “linker” to turn your code into an actual program. Since you’ve likely taken 15-122 or used C before, you probably already have one. If you get a “linker error” later when trying to run code:
+macOS: Run xcode-select –install in your terminal.
+Linux: Ensure you have gcc or clang installed (on Ubuntu, run sudo apt install build-essential).</p>
+</blockquote>
+<h2 id="windows"><a class="header" href="#windows">Windows</a></h2>
+<p>Installing on Windows is a bit different. Instead of the terminal, you will use a standard installer.</p>
+<ol>
+<li>Go to the <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">official Rust website</a>.</li>
+<li>Download the rustup-init.exe file.</li>
+<li>Run the file and follow the onscreen instructions.</li>
+</ol>
+<p><em>Note: You may be asked to install “Visual Studio C++ Build Tools.” This is normal! It provides the background libraries Rust needs to talk to the Windows operating system.</em></p>
+<h2 id="checking-your-work"><a class="header" href="#checking-your-work">Checking Your Work</a></h2>
+<p>Once the installation finishes, we need to make sure your computer recognizes Rust. Open a new terminal window (this is important so the terminal can “see” the new tools) and type:</p>
+<pre><code class="language-bash">rustc --version
+</code></pre>
+<p>If you see something like <code>rustc 1.85.0 (2026-02-20)</code>, you are ready to go! If you get an error saying “command not found,” try restarting your computer.</p>
+<h2 id="keeping-rust-up-to-date"><a class="header" href="#keeping-rust-up-to-date">Keeping Rust Up to Date</a></h2>
+<p>Rust moves fast! New versions come out every six weeks. You don’t need to go through this whole process again to update. Whenever you want the latest features, just run:</p>
+<pre><code class="language-bash">rustup update
+</code></pre>
+<h2 id="having-trouble"><a class="header" href="#having-trouble">Having Trouble?</a></h2>
+<p>If something didn’t work, don’t worry—installation can be tricky depending on your computer’s security settings. You can find very detailed troubleshooting steps on the Official Installation Page.</p>
+<h2 id="whats-next"><a class="header" href="#whats-next">What’s next?</a></h2>
+<p>Now that the “boring” setup is out of the way, you can dive into the actual code.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="hello-world"><a class="header" href="#hello-world">Hello, World</a></h1>
+<p>For most of you, the first program you wrote when learning a new programming language is probably “Hello, World,” a simple program that prints “Hello, World” on the screen. In C, it looks like this.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+</code></pre>
+<p>If you do not know C, you can ignore the code above. This is not a book that teaches you C, so we will not be going very deep into C. If you have already learned C, that’s great, because we’re going to write the Rust version of the program right now.</p>
+<h2 id="writing-hello-world-in-rust"><a class="header" href="#writing-hello-world-in-rust">Writing “Hello, World” in Rust</a></h2>
+<p>Now, we will write a “Hello, World” program in Rust. Just like any other programming languages, the source code of a program is a text file. Create a text file at any location you like, with the Rust extension “.rs”. Open the text file with your favorite text editor, and we will write the code together.</p>
+<p>Similar to C, the “main” function is also where every Rust program starts. The keyword to declare a function in Rust is <code>fn</code>, so we will write</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    
+}</code></pre>
+<p>to declare the main function in Rust. In this way, we have declared the “main” function that takes in no parameters and returns no value, similar to the “void” type in C.</p>
+<p>The print statement in Rust that goes into the “main” function looks like this.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!("Hello, World!");
+<span class="boring">}</span></code></pre>
+<p>This statement prints out “Hello, World!” on the screen, along with a line break. If you don’t want the line break, replace “println” with “print”.</p>
+<p>Similar to C, all statements in Rust ends with a semicolon “;”. However, it is probably your first time seeing an exclamation mark “!” in the print statement in a programming language (not the exclamation mark after “World”, but the one right after “println”). This is because “println!” calls a Rust macro. The official document discussed macros in details in <a href="https://doc.rust-lang.org/book/ch20-05-macros.html">Section 20.5</a>, but right now you only need to know that macros behave differently than a function.</p>
+<p>Congratulations, you have successfully written your first Rust program: “Hello, World”.</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    printf("Hello, World!\n");
+}</code></pre>
+<h2 id="compile-and-run-the-program"><a class="header" href="#compile-and-run-the-program">Compile and Run the Program</a></h2>
+<p>Rust is a compiled language, meaning every program must be compiled to an executable file before running. Open a terminal, and type this command to compile your program. Replace <code>[your file name]</code> with the file name of your program.</p>
+<pre><code class="language-bash">rustc [your file name].rs
+</code></pre>
+<p>If nothing shows up, congratulations: you successfully compiled your first program. If some text shows up, it’s usually an error message. Check if you accidentally write something wrong, and fix it. The error message usually also shows what you did wrong.</p>
+<p>After successfully compiling your code, you should see another file with the same name as your file, except that it has no extensions (if you use Windows, it has extension <code>.exe</code>). Open a terminal, and type this command to run it.</p>
+<pre><code class="language-bash">./[your file name]
+</code></pre>
+<p>If you see “Hello, World” printed on your screen, then the program has done its job right.</p>
+<h2 id="whats-next-1"><a class="header" href="#whats-next-1">What’s next?</a></h2>
+<p>We will look at variables, a way to store and process information. There’s a lot of special things about variables in Rust.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="variables--types"><a class="header" href="#variables--types">Variables &amp; Types</a></h1>
+<h2 id="the-basics-of-variables"><a class="header" href="#the-basics-of-variables">The Basics of Variables</a></h2>
+<p>Just like any other programming languages, a variable is a box that stores some information. In Rust, the keyword to declare a variable is <code>let</code>. For example, you can write</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = 5;
+<span class="boring">}</span></code></pre>
+<p>to declare a variable <code>a</code> with value 5. Now, when you run the program, your computer creates a “box” in a memory and store the number 5 in it. To print the value of a, we write</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>println!("{}", a);
+<span class="boring">}</span></code></pre>
+<p>below the declaration <code>let a = 5;</code>. You can put them in a main function to make it a complete program.</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let a = 5;
+    println!("{}", a);
+}</code></pre>
+<p>If you did everything right, then it will output 5, the value stored in <code>a</code>.</p>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<p>But, here’s the question: how can the computer know whether your variable stores an integer or a string? How does <code>println!("{}", a);</code> know that <code>a</code> is an integer, and output the integer instead of a club symbol in poker, the 5th character from the ASCII code?</p>
+<h3 id="what-is-type"><a class="header" href="#what-is-type">What is Type?</a></h3>
+<p>It turns out that every variable in Rust must have a <em>type</em>. Unlike languages such as C, where you have to specify the type of each variable, Rust can “guess” the type of your variables. For example, when the Rust compiler sees the declaration above, it guesses that the variable <code>a</code> has an integer type.
+If you do not want Rust to guess the type of your variables, you can also specify it.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a: i32 = 5;
+<span class="boring">}</span></code></pre>
+<p>Here, we specify the type of <code>a</code> to be <code>i32</code>, where</p>
+<ul>
+<li>The <code>i</code> means signed integer, which means that variables of this type can store negative numbers, and</li>
+<li>The <code>32</code> is the number of binary bits this variables take. Some mathematics will show that variables of this type can store numbers from \(-2^{31}\) to \(2^{31} - 1\).</li>
+</ul>
+<p>For simple values like integers or strings, the compiler can guess the types even if you don’t specify it. However, in the future when you encounter more complicated variables, you may have to specify their types when Rust cannot guess the types. This is because Rust is a <em>statically typed</em> language, so it has to know the types of all variables at compile time, before running your program.</p>
+<h3 id="why-type"><a class="header" href="#why-type">Why Type?</a></h3>
+<p>Just as the preface says, LLMs like ChatGPT can memorize all types of Rust much better than you do, so what’s valuable for us to think about is why Rust compiler has such a huge type system that guesses the types of your variables. This connects to the “Why Rust” chapter: the type system is one of the “safety net” of Rust. <strong>It prevents you from accidentally doing silly things.</strong></p>
+<p>For example, suppose you made this program that calculates the value of <code>"apple" + 3</code>.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = "apple";
+let b = 3;
+let c = a + b;
+<span class="boring">}</span></code></pre>
+<p>In real life, you know that “apple plus three” is meaningless. Correspondingly, if you compile the code above, it will raise an error, because the compiler guesses that <code>a</code> is a string (specifically, with type <code>&amp;str</code>, which we will cover later), and <code>b</code> is an integer, and it knows you did something wrong because you can’t add a string with an integer. Precisely, the code does not <em>type check</em>.</p>
+<h3 id="a-list-of-rust-types"><a class="header" href="#a-list-of-rust-types">A List of Rust Types</a></h3>
+<p>So far, we have learned one type in Rust: <code>i32</code>. There are a lot of types in Rust, and we will list some of them that store numbers here. Each of these types consists of a letter and a number. For the letter, <code>i</code> means signed integers (can be positive, zero and negative), <code>u</code> means unsigned integers (can only be non-negative), and <code>f</code> means floating point numbers (real numbers). Same as <code>i32</code>, the number indicates the number of bits taken by the variable. Below is a table of types in Rust that store numbers. Sometimes the word <code>size</code> is in place of a number, which means that the number of bits of this variable depends on the architecture of your computer. In a 32-bit computer, this type will have 32 bits; in a 64-bit computer, this will have 64 bits.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Signed Integer</th><th>Unsigned Integer</th><th>Floating Point</th></tr>
+</thead>
+<tbody>
+<tr><td><code>i8</code></td><td><code>u8</code></td><td></td></tr>
+<tr><td><code>i16</code></td><td><code>u16</code></td><td></td></tr>
+<tr><td><code>i32</code></td><td><code>u32</code></td><td><code>f32</code></td></tr>
+<tr><td><code>i64</code></td><td><code>u64</code></td><td><code>f64</code></td></tr>
+<tr><td><code>i128</code></td><td><code>u128</code></td><td></td></tr>
+<tr><td><code>isize</code></td><td><code>usize</code></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<p>Besides these types that store numbers, another simple type is <code>char</code> that stores a character. For example, you can write</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let c: char = 'z';
+<span class="boring">}</span></code></pre>
+<p>to store the character <code>'z'</code> into the variable <code>c</code>.</p>
+<h2 id="mutability"><a class="header" href="#mutability">Mutability</a></h2>
+<p>After learning variables in Rust, you started to write programs with excitement. You declared a variable and store a value, and then you store a different value.</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let my_number = 3;
+    my_number = 6;
+}</code></pre>
+<p>Then you received an error.</p>
+<pre><code class="language-bash">error[E0384]: cannot assign twice to immutable variable `my_number`
+ --&gt; vari.rs:3:5
+  |
+2 |     let my_number = 3;
+  |         --------- first assignment to `my_number`
+3 |     my_number = 6;
+  |     ^^^^^^^^^^^^^ cannot assign twice to immutable variable
+</code></pre>
+<p>“Why?” you think. Then you go to read the error message. It seems like the variable <code>my_number</code> is <em>immutable</em>, and you are curious about what it means.</p>
+<p>Here’s the thing: in most languages, variables are <em>mutable</em> by default, which means that you can change the value of variables unless you put something like <code>const</code>. In Rust, it’s the opposite: variables are <em>immutable</em> by default, which means that you cannot change the value of variables, unless you do something.</p>
+<p>The thing to do is: add <code>mut</code> in the variable declaration.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut my_number = 3;
+<span class="boring">}</span></code></pre>
+<p>After adding <code>mut</code>, your program should compile now.</p>
+<h2 id="an-example-a--b-problem"><a class="header" href="#an-example-a--b-problem">An Example: A + B Problem</a></h2>
+<p>Using what we’ve learned, let’s write a program together! We will write a program that takes two integers \(a\) and \(b\) from user input, and output their sum \(a + b\).</p>
+<p>Taking inputs from users is extremely hard in Rust, so we won’t be getting deep into much details right now. Here’s a rough outline of what we’ll do.</p>
+<ol>
+<li>We’ll first prompt user by printing a prompt.</li>
+<li>Then, we’ll store users’ inputs in the mutable variable <code>input</code> with type <code>String</code></li>
+<li>Finally, we will parse the string into an integer and store it in the variable <code>a</code> with type <code>i32</code>.</li>
+</ol>
+<p>Here, you also need to use an external libary <code>std::io</code>, this is like <code>#include</code> in C or <code>import</code> in Python.</p>
+<pre class="playground"><code class="language-rust">// use the external library std::io
+use std::io;
+
+fn main() {
+    // print out a prompting message
+    println!("Please input the first number. Then press Enter");
+
+    // declare `input` as a variable of type `String`
+    let mut input = String::new();
+
+    // read from keyboard and store the string in input
+    io::stdin().read_line(&amp;mut input).expect("Failed to read line");
+
+    // parse the input string into an integer and store it in a
+    let a: i32 = input.trim().parse().expect("Invalid integer input");
+}</code></pre>
+<p>You do not need to understand the details of the code right now, as we will go through more advanced topics such as functions and error handling. After you completed later chapters, you can come back to see it.</p>
+<p>Now, we will do the same thing for <code>b</code>.</p>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Please input the first number. Then press Enter");
+    let mut input = String::new();
+    io::stdin().read_line(&amp;mut input).expect("Failed to read line");
+    let a: i32 = input.trim().parse().expect("Invalid integer input");
+    
+    println!("Please input the second number. Then press Enter");
+    let mut input2 = String::new();
+    io::stdin().read_line(&amp;mut input2).expect("Failed to read line");
+    let b: i32 = input2.trim().parse().expect("Invalid integer input");
+}</code></pre>
+<p>Next, we will declare a new variable <code>c</code>, and store the value of <code>a + b</code>.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let c = a + b;
+<span class="boring">}</span></code></pre>
+<p>Using things about type inferences we’ve learned, the Rust compiler will “guess” that <code>c</code> has type <code>i32</code>, so it doesn’t matter whether or not we specify the type. If we do, it will look like this.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let c: i32 = a + b;
+<span class="boring">}</span></code></pre>
+<p>Finally, print the value of <code>c</code>, and enjoy your result!</p>
+<pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    println!("Please input the first number. Then press Enter");
+    let mut input = String::new();
+    io::stdin().read_line(&amp;mut input).expect("Failed to read line");
+    let a: i32 = input.trim().parse().expect("Invalid integer input");
+    
+    println!("Please input the second number. Then press Enter");
+    let mut input2 = String::new();
+    io::stdin().read_line(&amp;mut input2).expect("Failed to read line");
+    let b: i32 = input2.trim().parse().expect("Invalid integer input");
+
+    let c = a + b;
+    println!("{}", c);
+}</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h1>
+<h2 id="the-if-statements"><a class="header" href="#the-if-statements">The <code>if</code> Statements</a></h2>
+<p>So far, what we have learned allows us to write Rust programs that do things sequentially, such as printing strings, or using variables. What if we want our programs to do different things depending on some conditions? If you have learned a programming language before, you might remember the <code>if</code> statement from your language that does such things. In Rust, there is also an <code>if</code> statement, and it’s a little more powerful than most other languages.</p>
+<h3 id="the-usual-way"><a class="header" href="#the-usual-way">The Usual Way</a></h3>
+<p>Same as most other language, the condition goes after the <code>if</code>, and what happens goes inside the bracket.</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>if [condition] {
+    [what happens];
+}
+<span class="boring">}</span></code></pre>
+<p>You can also use <code>else</code> to state “if something not happens”. For example, if you want to make a program that determines whether or not a student passes a class, you write something like this.</p>
+<pre class="playground"><code class="language-rust">fn main() {
+    let score = 70;
+    if score &gt;= 60 {
+        println!("pass");
+    } else {
+        println!("fail");
+    }
+}</code></pre>
+<p>This program declares the variable <code>score</code> and initializes it with value 70. Then, if <code>score</code> is bigger than or equal to 60, then prints out <code>pass</code>. Otherwise, it prints out <code>fail</code>. Therefore, if you run this program, it should print out <code>pass</code>. To make it truly interact with human, you can also modify it so that the user inputs the score using the way described at the end of the previous section.</p>
+<h3 id="the-unusual-way"><a class="header" href="#the-unusual-way">The Unusual Way</a></h3>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="lab-1-temperature-lab"><a class="header" href="#lab-1-temperature-lab">Lab 1: Temperature Lab</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
