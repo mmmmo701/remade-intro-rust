@@ -4,7 +4,7 @@ Now that you know why to learn Rust, let's get it onto your computer! Rust is in
 
 ## Linux and macOS
 
-Open your terminal and paste the following command:
+Open your terminal and paste the following command from the [official website](https://doc.rust-lang.org/book/ch01-01-installation.html):
 
 ```bash
 curl --proto '=https' --tlsv1.2 [https://sh.rustup.rs](https://sh.rustup.rs) -sSf | sh
@@ -24,7 +24,7 @@ If the install is successful, you will see this message:
 
 Installing on Windows is a bit different. Instead of the terminal, you will use a standard installer.
 
-1. Go to the official Rust website.
+1. Go to the [official Rust website](https://doc.rust-lang.org/book/ch01-01-installation.html).
 2. Download the rustup-init.exe file.
 3. Run the file and follow the onscreen instructions.
 
