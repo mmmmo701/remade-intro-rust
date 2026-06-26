@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-f6a1c940.js";
+            window.path_to_searchindex_js = "searchindex-4236ded7.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-5476606a.js"></script>
@@ -453,6 +453,7 @@ fn main() {
     [what happens];
 }
 <span class="boring">}</span></code></pre>
+<p>Note that I did not wrap the condition around a parenthesis. This is because it is the standard style of Rust.</p>
 <p>You can also use <code>else</code> to state “if something not happens”. For example, if you want to make a program that determines whether or not a student passes a class, you write something like this.</p>
 <pre class="playground"><code class="language-rust">fn main() {
     let score = 70;
@@ -464,6 +465,51 @@ fn main() {
 }</code></pre>
 <p>This program declares the variable <code>score</code> and initializes it with value 70. Then, if <code>score</code> is bigger than or equal to 60, then prints out <code>pass</code>. Otherwise, it prints out <code>fail</code>. Therefore, if you run this program, it should print out <code>pass</code>. To make it truly interact with human, you can also modify it so that the user inputs the score using the way described at the end of the previous section.</p>
 <h3 id="the-unusual-way"><a class="header" href="#the-unusual-way">The Unusual Way</a></h3>
+<p>So, what’s special about the <code>if</code> statements in Rust if it’s just the same as all other languages? You will see the answer here.</p>
+<p>In Rust, you can not only branch on instructions, but also branch on expressions. For example, if I declare a variable like this:</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let bonus = if bug &lt; 5 { 100 } else { 0 };
+<span class="boring">}</span></code></pre>
+<p>then it is equivalent to saying</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut bonus;
+if bug &lt; 5 {
+    bonus = 100;
+} else {
+    bonus = 0;
+}
+<span class="boring">}</span></code></pre>
+<p>Why do we care that we can write it like this?</p>
+<ol>
+<li><strong>Safety</strong>: Imagine you write code using the second way, and you forgot to write the <code>else</code> branch, and your program will have bugs. Even worse, if you are writing it in C, there will be undefined behaviors! In Rust, these problems are solved by using the first way.</li>
+<li><strong>Immutability</strong>: Notice that in the first declaration the variable <code>bonus</code> is immutable, but in the second declaration <code>bonus</code> must be mutable. By writing an <code>if</code> expression using the first way instead of an <code>if</code> statement using the second way enables us to initialize an immutable variable based on different cases. By keeping the variable <code>bonus</code> immutable, it ensures that the variable will not be changed later.</li>
+<li><strong>Efficiency</strong>: The compiler will usually compile the first way into faster instructions than the second way.</li>
+</ol>
+<h2 id="loops"><a class="header" href="#loops">Loops</a></h2>
+<p>Loop means repeatedly doing something in a program. If you have used <a href="https://scratch.mit.edu">Scratch</a>, you might remember using a block called “repeat 10” or “repeat until”. If you have learned a programming language like C, you might have learned the “for” loop and the “while” loop. There are also “for” loops and “while” loops in Rust, and there is even more loops besides them. We will start with what you are familiar with.</p>
+<h3 id="the-for-loop-and-the-while-loop"><a class="header" href="#the-for-loop-and-the-while-loop">The “For” Loop and the “While” Loop</a></h3>
+<p>While loops are almost identical to those in C. The condition goes after the “while” keyword“, then you use a pair of curly braces to indicate what is repeated. For example,</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let mut val = 1;
+while val &lt; 100 {
+    println!("{}", val);
+    val *= 2;
+}
+<span class="boring">}</span></code></pre>
+<p>This will print out all powers of 2 that are less than 100.</p>
+<p>Instead of the C style, “for” loops are more like Python style. The way you use it is “for [variable] in [range]”. For example,</p>
+<pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>for i in 0..10 {
+    println!("{}", i);
+}
+<span class="boring">}</span></code></pre>
+<p>This will print out numbers from 0 to 9 (inclusive). If you want to make it print out 0 to 10 instead, change <code>0..10</code> to <code>0..=10</code>.</p>
+<h3 id="the-loop-loop-break-and-continue"><a class="header" href="#the-loop-loop-break-and-continue">The “Loop” loop, Break, and Continue</a></h3>
+<p>[TODO]</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <div style="break-before: page; page-break-before: always;"></div>
